@@ -1,0 +1,20 @@
+# Ignore build artifacts
+build/
+
+# Ignore user-specific settings
+*.user
+*.user.*
+
+# Qt Creator backup/metadata
+*.autosave
+*.pro.user
+
+# CMake build folders
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# IDE configs (optional)
+.idea/
+.vscode/
