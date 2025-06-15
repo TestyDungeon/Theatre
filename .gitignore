@@ -1,5 +1,6 @@
 # Ignore build artifacts
 build/
+.cache/
 
 # Ignore user-specific settings
 *.user
