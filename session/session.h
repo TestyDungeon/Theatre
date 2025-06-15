@@ -1,6 +1,7 @@
 #pragma once
 
 #include <chrono>
+#include <string>
 #include <vector>
 #include "../order_request/enums.h"
 #include "../order_request/order_request.h"
@@ -16,7 +17,7 @@ protected:
     
     Theatre* parent_theatre = nullptr;
 
-    std::vector<OrderRequest* > orders;
+    std::vector<OrderRequest> orders;
 public:
     Session(std::string title_, std::chrono::sys_seconds time_, double cost_, int seats_left_);
 
@@ -29,6 +30,12 @@ public:
     bool reserve_seats(int& left, const int& reserved);
 
     std::string information() const;
+
+    void append_order(OrderRequest o);
+
+    int find_seat(const OrderRequest& o) const;
+
+    std::string order_information(const OrderRequest& o) const;
 
     virtual std::vector<Extras> get_supported_extras() const=0;
     virtual bool ordered(const OrderRequest& req)=0;

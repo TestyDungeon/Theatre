@@ -1,5 +1,4 @@
 #include "choir.h"
-#include "enums.h"
 
 Choir::Choir(std::string title_, std::chrono::sys_seconds time_, double cost_, int seats_left_, int balcony_seats_left_):
     Opera(title_, time_, cost_, seats_left_, balcony_seats_left_)

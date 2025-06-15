@@ -4,7 +4,6 @@ GrandOpera::GrandOpera(std::string title_, std::chrono::sys_seconds time_, doubl
     Opera(title_, time_, cost_, seats_left_, balcony_seats_left_)
 {}
 
-
 std::vector<Extras> GrandOpera::get_supported_extras() const{
     return {Extras::Balcony};
 }
