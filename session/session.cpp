@@ -20,6 +20,7 @@ int Session::get_seats_left() const{
     return seats_left;
 }
 
+
 bool Session::reserve_seats(int& left, const int& reserved){
     if(left - reserved >= 0){
         left -= reserved;
@@ -27,6 +28,7 @@ bool Session::reserve_seats(int& left, const int& reserved){
     }
     return false;
 }
+
 
 std::string Session::information() const{
     std::string info = 

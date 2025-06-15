@@ -7,7 +7,7 @@
 struct OrderRequest{
     std::string name;
     std::string surname;
-    int number_of_tickets;
     int age;
+    int number_of_tickets;
     std::vector<Extras> extras;
 };

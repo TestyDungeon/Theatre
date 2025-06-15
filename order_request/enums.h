@@ -6,11 +6,11 @@ enum age{
     R = 17,
 };
 
-enum Extras {
+enum class Extras {
     /* Opera */ Balcony,
-    /* Opera / Choir */ CharityDonation,
+    /* Opera / Choir */ Donation,
 
     /* Movie */ VipSeat, Popcorn, Cola,
 
-    /* Drama */ Binocular
+    /* Drama */ Binocular, FrontRowSeat, ProgramBooklet
 };

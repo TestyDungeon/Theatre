@@ -1,17 +1,12 @@
 #include "choir.h"
+#include "enums.h"
 
 Choir::Choir(std::string title_, std::chrono::sys_seconds time_, double cost_, int seats_left_, int balcony_seats_left_):
     Opera(title_, time_, cost_, seats_left_, balcony_seats_left_)
-{
+{}
 
-}
-
-void Choir::handle_extras(const std::vector<Extras>& ext){
-    for(auto extra : supported_extras){
-        if(std::count(ext.begin(), ext.end(), extra)){
-
-        }
-    }
+std::vector<Extras> Choir::get_supported_extras() const{
+    return {Extras::Donation, Extras::Balcony};
 }
 
 bool Choir::ordered(const OrderRequest& req){
