@@ -3,16 +3,14 @@
 #include <string>
 #include <vector>
 #include "enums.h"
+#include <unordered_map>
 
 struct OrderRequest{
     std::string name;
     std::string surname;
     int age;
-    int number_of_tickets;
+    std::unordered_map<SeatType, int> number_of_tickets;
     std::vector<Extras> extras;
+    std::unordered_map<SeatType, int> seat_numbers;
 
-    bool operator==(const OrderRequest &a) const{
-        
-        return name == a.name && surname == a.surname && age == a.age && number_of_tickets == a.number_of_tickets && extras == a.extras;
-    }
 };

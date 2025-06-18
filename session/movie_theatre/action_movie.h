@@ -4,5 +4,6 @@
 
 class ActionMovie : public Movie{
 public:
-    ActionMovie(std::string title_, std::chrono::sys_seconds time_, double cost_, int seats_left_, int vip_seats_left_);
+    ActionMovie(std::string title_, std::chrono::sys_seconds time_, double cost_);
+
 };

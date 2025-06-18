@@ -3,6 +3,7 @@
 #include <chrono>
 #include <string>
 #include <vector>
+#include <unordered_map>
 #include "../order_request/enums.h"
 #include "../order_request/order_request.h"
 
@@ -13,32 +14,32 @@ protected:
     std::string title;
     std::chrono::sys_seconds time;
     double cost;
-    int seats_left;
+    std::unordered_map<SeatType, int> seats_left;
     
     Theatre* parent_theatre = nullptr;
 
     std::vector<OrderRequest> orders;
+    Session(std::string title_, std::chrono::sys_seconds time_, double cost_);
 public:
-    Session(std::string title_, std::chrono::sys_seconds time_, double cost_, int seats_left_);
-
-    std::string get_title() const;
 
     void set_parent(Theatre* x);
+    std::string get_title() const;
 
-    int get_seats_left() const;
+    int get_seats_left(SeatType x) const;
 
-    bool reserve_seats(int& left, const int& reserved);
+    bool ticket_order(OrderRequest req);
 
     std::string information() const;
 
-    void append_order(OrderRequest o);
-
-    int find_seat(const OrderRequest& o) const;
-
     std::string order_information(const OrderRequest& o) const;
 
-    virtual std::vector<Extras> get_supported_extras() const=0;
-    virtual bool ordered(const OrderRequest& req)=0;
+    int get_total_order_seats(const OrderRequest& o) const;
 
-    virtual ~Session() = default;
+    std::vector<SeatType> get_seats_types() const;
+
+    virtual std::vector<Extras> get_supported_extras() const=0;
+
+    virtual double calculate_price(const OrderRequest& req) const = 0;
+
+    virtual ~Session();
 };

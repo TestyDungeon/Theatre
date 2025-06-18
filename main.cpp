@@ -1,5 +1,6 @@
 #include <iostream>
 
+#include "drama_theatre.h"
 #include "enums.h"
 #include "session.h"
 #include "theatre.h"
@@ -13,49 +14,70 @@
 #include "session/movie_theatre/cartoon.h"
 
 #include "order_request/order_request.h"
+#include "tragedy_play.h"
 
 
 
 int main(){
     std::vector<Theatre*> theatres;
 
-    OperaTheatre opera("Opera Theatre of Saint Louis", "210 Hazel Ave", 960, 130);
+    OperaTheatre opera("Opera Theatre of Saint Louis", "210 Hazel Ave", 96, 120, 165, 238);
     opera.append_session(new GrandOpera(
         "The Pirates of Penzance", 
         sys_days{year{2025}/6/19} + hours{19} + minutes{30},
-        29,
-        opera.get_seats(),
-        opera.get_balcony_seats()
+        29
     ));
 
     opera.append_session(new Choir(
         "House Gospel Choir", 
         sys_days{year{2025}/6/30} + hours{12} + minutes{00},
-        5,
-        opera.get_seats(),
-        opera.get_balcony_seats()
+        5
     ));
 
     theatres.push_back(&opera);
 
-    MovieTheatre cinema("Multiplex", "47 European Union Ave", 130, 12);
+
+
+
+    MovieTheatre cinema("Multiplex Cinema", "47 European Union Ave", 130, 12);
     cinema.append_session(new HorrorMovie(
         "Substance", 
         sys_days{year{2025}/6/12} + hours{14} + minutes{30},
-        5,
-        cinema.get_seats(),
-        cinema.get_vip_seats()
+        5
     ));
 
     cinema.append_session(new ActionMovie(
         "Mission: Impossible - The Final Reckoning", 
         sys_days{year{2025}/6/13} + hours{16} + minutes{00},
-        5,
-        cinema.get_seats(),
-        cinema.get_vip_seats()
+        5
+    ));
+
+    cinema.append_session(new Cartoon(
+        "Nausicaä of the Valley of the Wind", 
+        sys_days{year{2025}/7/1} + hours{21} + minutes{45},
+        5
     ));
 
     theatres.push_back(&cinema);
+
+
+
+
+    DramaTheatre drama("Eugene O'Neill Theatre", "230 West 49th Street", 110, 240, 278);
+
+    drama.append_session(new TragedyPlay(
+        "Hamlet", 
+        sys_days{year{2025}/7/9} + hours{20} + minutes{30},
+        18
+    ));
+
+    cinema.append_session(new Cartoon(
+        "A Midsummer Night’s Dream", 
+        sys_days{year{2025}/7/7} + hours{17} + minutes{00},
+        15
+    ));
+
+
 
     while(true){
         int theatre_choice;
@@ -93,8 +115,12 @@ int main(){
         std::cin>>order.surname;
         std::cout<<"Your age: "<<std::endl;
         std::cin>>order.age;
-        std::cout<<"How many tickets: "<<std::endl;
-        std::cin>>order.number_of_tickets;
+        for(auto type : session->get_seats_types()){
+            std::cout<<"How many "<<seat_type_to_string(type)<<" do you want ?"<<std::endl;
+            std::cin>>order.number_of_tickets[type];
+        }
+        
+
         for(auto x : session->get_supported_extras()){
             std::cout<<"Do you want "<<extra_to_string(x)<<"? (0 - No | 1 - Yes)"<<std::endl;
             std::cin>>extras_choice;
@@ -102,7 +128,7 @@ int main(){
                 order.extras.push_back(x);
         }
 
-        session->append_order(order);
+        session->ticket_order(order);
         std::cout<<std::endl<<session->order_information(order);
         std::cin>>end_choice;
 

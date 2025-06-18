@@ -1,5 +1,6 @@
 #pragma once
 
+#include "enums.h"
 #ifndef THEATRE_H
 #define THEATRE_H
 
@@ -8,6 +9,7 @@
 
 #include <string>
 #include <vector>
+#include <unordered_map>
 
 #include "../session/session.h"
 #include <bits/stdc++.h>
@@ -17,46 +19,28 @@ class Theatre{
 protected:
     std::string name;
     std::string location;
+    
+
     std::vector<Session *> sessions;
-    int seats;
+    std::unordered_map<SeatType, int> seat_counts;
 public:
-    Theatre(std::string name_, std::string location_, int seats_):
-        name(name_),
-        location(location_),
-        seats(seats_)
-    {
+    Theatre(const std::string& name_, const std::string& location_);
 
-    }
+    void append_session(Session *s);
 
-    void append_session(Session *s){
-        sessions.push_back(s);
-        s->set_parent(this);
-    }
+    const std::string& get_name() const;
+    
+    const std::string& get_address() const;
 
-    int get_seats() const{
-        return seats;
-    }
+    std::unordered_map<SeatType, int> get_seats() const;
 
-    std::string get_address() const{
-        return location;
-    }
+    int get_seats(const SeatType& x) const;
 
-    int get_number_of_sessions() const{
-        return sessions.size();
-    }
+    int get_number_of_sessions() const;
 
-    Session* get_session(int i) const{
-        return sessions[i];
-    }
+    Session* get_session(int i) const;
 
-    std::string get_name() const{
-        return name;
-    }
+    virtual std::vector<SeatType> get_available_seat_types() const = 0;
 
-    virtual void order(int x, const OrderRequest& req){
-        if(sessions[x]->get_seats_left() > 0){
-            sessions[x]->ordered(req);
-        }
-    }
-
+    virtual ~Theatre();
 };

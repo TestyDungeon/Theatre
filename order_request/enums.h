@@ -4,26 +4,24 @@
 #include <string>
 
 
-enum age{
+enum class age{
     G = 0,
     PG13 = 13,
     R = 17,
 };
 
 enum class Extras {
-    /* Opera */ Balcony,
     /* Opera / Choir */ Donation,
 
-    /* Movie */ VipSeat, Popcorn, Cola,
+    /* Movie */ Popcorn, Cola,
 
-    /* Drama */ Binocular, FrontRowSeat, ProgramBooklet
+    /* Drama */ Binocular, ProgramBooklet
 };
+
+
 
 inline std::string extra_to_string(Extras x){
     switch (x) {
-        case Extras::Balcony: return "to have a balcony seat";
-        case Extras::VipSeat: return "to have a VIP seat";
-        case Extras::FrontRowSeat: return "to have a front row seat";
         case Extras::Binocular: return "to get a binocular";
         case Extras::Cola: return "to preorder cola";
         case Extras::Popcorn: return "to preorder popcorn";
@@ -31,4 +29,27 @@ inline std::string extra_to_string(Extras x){
         case Extras::ProgramBooklet: return "to get a program booklet"; 
     }
     throw std::invalid_argument("Unknown Extra in extras_to_string()");
+}
+
+enum class SeatType{
+    /* Opera */ Stalls, FirstBalcony, SecondBalcony, Gallery,
+    /* Movie */ Regular, VIP,
+    /* Drama */ Parterre, DressCircle, Balcony 
+};
+
+inline std::string seat_type_to_string(SeatType x){
+    switch (x) {
+        case SeatType::Stalls: return "Stalls";
+        case SeatType::FirstBalcony: return "First balcony";
+        case SeatType::SecondBalcony: return "Second balcony";
+        case SeatType::Gallery: return "Gallery";
+        
+        case SeatType::Regular: return "Regular";
+        case SeatType::VIP: return "VIP";
+
+        case SeatType::Parterre: return "Parterre";
+        case SeatType::DressCircle: return "Dress circle";
+        case SeatType::Balcony: return "Balcony"; 
+    }
+    throw std::invalid_argument("Unknown SeatType in seat_type_to_string()");
 }
