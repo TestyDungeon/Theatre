@@ -17,6 +17,7 @@ include_directories(
 
 file(GLOB_RECURSE PROJECT_SOURCES
     main.cpp
+    console_ui.cpp
     session/*.cpp
     session/drama_theatre/*.cpp
     session/movie_theatre/*.cpp

@@ -8,8 +8,7 @@ protected:
     age age_restriction;
     Movie(std::string title_, std::chrono::sys_seconds time_, double cost_, age age_restriction_);
 public:
-
-    int get_vip_seats_left() const;
+    bool ticket_order(OrderRequest req) override;
 
     virtual std::vector<Extras> get_supported_extras() const override;
 

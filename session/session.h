@@ -24,6 +24,8 @@ public:
 
     void set_parent(Theatre* x);
 
+
+
     std::string get_title() const;
 
     double get_cost() const;
@@ -34,7 +36,7 @@ public:
 
     void set_seats_left(const std::unordered_map<SeatType, int>& s);
 
-    bool ticket_order(OrderRequest req);
+
 
     std::string information() const;
 
@@ -43,6 +45,10 @@ public:
     int get_total_order_seats(const OrderRequest& o) const;
 
     std::vector<SeatType> get_seats_types() const;
+
+    
+    
+    virtual bool ticket_order(OrderRequest req);
 
     virtual std::vector<Extras> get_supported_extras() const=0;
 

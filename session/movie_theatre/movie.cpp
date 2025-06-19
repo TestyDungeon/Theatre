@@ -1,5 +1,6 @@
 #include "movie.h"
 #include "enums.h"
+#include "theatre.h"
 
 Movie::Movie(std::string title_, std::chrono::sys_seconds time_, double cost_, age age_restriction_):
     Session(title_, time_, cost_),
@@ -21,4 +22,22 @@ double Movie::calculate_price(const OrderRequest& req) const{
         price += 1;  
     
     return price;
+}
+
+bool Movie::ticket_order(OrderRequest req){
+    for(auto seat : parent_theatre->get_available_seat_types()){
+        if(seats_left[seat] - req.number_of_tickets.at(seat) < 0)
+            return false;
+    }
+
+    if(req.age < static_cast<int>(age_restriction))
+        return false;
+
+    for(auto seat : parent_theatre->get_available_seat_types()){
+        seats_left[seat] -= req.number_of_tickets.at(seat);
+    }
+
+    orders.push_back(req);
+
+    return true;
 }

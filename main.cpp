@@ -1,9 +1,6 @@
-#include <iostream>
-
 #include "theatre.h"
 #include "session.h"
-#include "enums.h"
-#include "order_request.h"
+#include "console_ui.h"
 
 #include "opera_theatre.h"
 #include "grand_opera.h"
@@ -83,64 +80,7 @@ int main(){
     theatres.push_back(&drama);
 
 
-    while(true){
-        int theatre_choice;
-        int session_choice;
-        bool order_choice;
-        bool extras_choice;
-        int end_choice;
-
-        std::cout<<std::endl<<"Choose the theatre(from "<<0<<" to "<<theatres.size()-1<<"): "<<std::endl;
-        for(int i = 0; i < theatres.size(); i++)
-            std::cout<<i<<" - "<<theatres[i]->get_name()<<std::endl;
-        std::cin>>theatre_choice;
-        Theatre* theatre = theatres[theatre_choice];
-
-        std::cout<<std::endl<<"Choose the session(from "<<0<<" to "<<theatre->get_number_of_sessions()-1<<"): "<<std::endl;
-        for(int i = 0; i < theatre->get_number_of_sessions(); i++)
-            std::cout<<i<<" - "<<theatre->get_session(i)->get_title()<<std::endl;
-        std::cin>>session_choice;
-
-        Session* session = theatre->get_session(session_choice);
-
-        std::cout<<std::endl<<session->information()<<std::endl;
-
-        std::cout<<"Would you like to order a ticket? (0 - No | 1 - Yes):"<<std::endl;
-        std::cin>>order_choice;
-        
-        if(!order_choice)
-            continue;
-
-        OrderRequest order;
-        std::cout<<std::endl;
-        std::cout<<"Your name: "<<std::endl;
-        std::cin>>order.name;
-        std::cout<<"Your surname: "<<std::endl;
-        std::cin>>order.surname;
-        std::cout<<"Your age: "<<std::endl;
-        std::cin>>order.age;
-        for(auto type : session->get_seats_types()){
-            std::cout<<"How many "<<seat_type_to_string(type)<<" tickets do you want ?"<<std::endl;
-            std::cin>>order.number_of_tickets[type];
-        }
-        
-
-        for(auto x : session->get_supported_extras()){
-            std::cout<<"Do you want "<<extra_to_string(x)<<"? (0 - No | 1 - Yes)"<<std::endl;
-            std::cin>>extras_choice;
-            if(extras_choice)
-                order.extras.push_back(x);
-        }
-
-        session->ticket_order(order);
-        std::cout<<std::endl<<session->order_information(order)<<std::endl;
-        std::cout<<"Thank you for using our service!\n"<<
-                    "Would you like to order something else? (0 - No | 1 - Yes)";
-        std::cin>>end_choice;
-        if(end_choice)
-            continue;
-        break;
-    }
-
+    ConsoleUI ui;
+    ui.run(theatres);
     return 0;
 }
