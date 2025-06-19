@@ -13,6 +13,4 @@ public:
     virtual std::vector<Extras> get_supported_extras() const override;
 
     virtual double calculate_price(const OrderRequest& req) const override;
-
-    virtual std::string age_message(const OrderRequest& req) const = 0;
 };

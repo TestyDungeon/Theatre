@@ -1,6 +1,7 @@
 #pragma once
 
 #include "enums.h"
+#include "order_request.h"
 #ifndef THEATRE_H
 #define THEATRE_H
 
@@ -20,7 +21,6 @@ protected:
     std::string name;
     std::string location;
     
-
     std::vector<Session *> sessions;
     std::unordered_map<SeatType, int> seat_counts;
 public:
@@ -40,7 +40,9 @@ public:
 
     Session* get_session(int i) const;
 
-    virtual std::vector<SeatType> get_available_seat_types() const = 0;
+    std::vector<SeatType> get_available_seat_types() const;
+
+    virtual bool approve_order(const Session& s, const OrderRequest& req) const = 0;
 
     virtual ~Theatre();
 };

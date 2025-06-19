@@ -36,6 +36,12 @@ const std::string& Theatre::get_name() const{
     return name;
 }
 
-Theatre::~Theatre(){
-
+std::vector<SeatType> Theatre::get_available_seat_types() const{
+    std::vector<SeatType> seat_types;
+    for(auto cell : seat_counts){
+        seat_types.push_back(cell.first);
+    }
+    return seat_types;
 }
+
+Theatre::~Theatre(){}

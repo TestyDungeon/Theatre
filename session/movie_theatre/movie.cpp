@@ -25,6 +25,9 @@ double Movie::calculate_price(const OrderRequest& req) const{
 }
 
 bool Movie::ticket_order(OrderRequest req){
+    if(!parent_theatre->approve_order(*this, req))
+        return false;
+    
     for(auto seat : parent_theatre->get_available_seat_types()){
         if(seats_left[seat] - req.number_of_tickets.at(seat) < 0)
             return false;

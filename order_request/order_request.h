@@ -11,6 +11,5 @@ struct OrderRequest{
     int age;
     std::unordered_map<SeatType, int> number_of_tickets;
     std::vector<Extras> extras;
-    std::unordered_map<SeatType, int> seat_numbers;
 
 };

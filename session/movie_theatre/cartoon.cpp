@@ -20,7 +20,3 @@ double Cartoon::calculate_price(const OrderRequest& req) const{
 
     return price;
 }
-
-std::string Cartoon::age_message(const OrderRequest& req) const{
-    return "Enjoy your cartoon!\n";
-}
