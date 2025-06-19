@@ -28,6 +28,16 @@ OrderRequest make_order(
     req.name = name;
     req.surname = surname;
     req.age = age;
+    
+    req.number_of_tickets[SeatType::Gallery] = 0;
+    req.number_of_tickets[SeatType::SecondBalcony] = 0;
+    req.number_of_tickets[SeatType::FirstBalcony] = 0;
+    req.number_of_tickets[SeatType::Stalls] = 0;
+    req.number_of_tickets[SeatType::Balcony] = 0;
+    req.number_of_tickets[SeatType::DressCircle] = 0;
+    req.number_of_tickets[SeatType::Parterre] = 0;
+    req.number_of_tickets[SeatType::Regular] = 0;
+    req.number_of_tickets[SeatType::VIP] = 0;
     for(auto cell : seats){
         req.number_of_tickets[cell.first] = seats.at(cell.first);
     }
