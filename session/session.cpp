@@ -10,9 +10,7 @@ Session::Session(std::string title_, std::chrono::sys_seconds time_, double cost
     title(title_),
     time(time_),
     cost(cost_)
-{
-    seats_left = parent_theatre->get_seats();
-}
+{}
 
 std::string Session::get_title() const{
     return title;
@@ -24,6 +22,10 @@ void Session::set_parent(Theatre* x){
 
 int Session::get_seats_left(SeatType x) const{
     return seats_left.at(x);
+}
+
+void Session::set_seats_left(const std::unordered_map<SeatType, int>& s){
+    seats_left = s;
 }
 
 
@@ -47,7 +49,7 @@ std::string Session::information() const{
     std::string info = 
     title +
     "\nTime: " + std::format("{:%Y-%m-%d %H:%M}", time) +
-    "\nCost: " + std::to_string(cost) +
+    "\nCost: " + std::to_string(cost) + " USD" +
     "\nAddress: " + parent_theatre->get_address();
     return info;
 }
@@ -56,6 +58,13 @@ std::string Session::order_information(const OrderRequest& o) const{
     std::string s = 
     "Name: " + o.name + "\n" +
     "Surname: " + o.surname + "\n";
+    for(auto cell : o.number_of_tickets){
+        s += seat_type_to_string(cell.first) + ": " + std::to_string(cell.second) + " ticket(s)" + "\n";
+    }
+    for(auto cell : o.extras){
+        s += extra_to_string(cell) + "\n";
+    }
+    s += "Total cost: " + std::to_string(calculate_price(o)) + "\n";
     return s;
 }
 

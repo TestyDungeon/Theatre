@@ -22,11 +22,11 @@ enum class Extras {
 
 inline std::string extra_to_string(Extras x){
     switch (x) {
-        case Extras::Binocular: return "to get a binocular";
-        case Extras::Cola: return "to preorder cola";
-        case Extras::Popcorn: return "to preorder popcorn";
-        case Extras::Donation: return "to make a donation";
-        case Extras::ProgramBooklet: return "to get a program booklet"; 
+        case Extras::Binocular: return "Binocular";
+        case Extras::Cola: return "Cola";
+        case Extras::Popcorn: return "Popcorn";
+        case Extras::Donation: return "Donation";
+        case Extras::ProgramBooklet: return "Program booklet"; 
     }
     throw std::invalid_argument("Unknown Extra in extras_to_string()");
 }

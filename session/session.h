@@ -27,6 +27,8 @@ public:
 
     int get_seats_left(SeatType x) const;
 
+    void set_seats_left(const std::unordered_map<SeatType, int>& s);
+
     bool ticket_order(OrderRequest req);
 
     std::string information() const;

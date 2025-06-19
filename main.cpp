@@ -1,5 +1,6 @@
 #include <iostream>
 
+#include "comedy_play.h"
 #include "drama_theatre.h"
 #include "enums.h"
 #include "session.h"
@@ -43,19 +44,19 @@ int main(){
     cinema.append_session(new HorrorMovie(
         "Substance", 
         sys_days{year{2025}/6/12} + hours{14} + minutes{30},
-        5
+        10
     ));
 
     cinema.append_session(new ActionMovie(
         "Mission: Impossible - The Final Reckoning", 
         sys_days{year{2025}/6/13} + hours{16} + minutes{00},
-        5
+        10
     ));
 
     cinema.append_session(new Cartoon(
         "Nausicaä of the Valley of the Wind", 
         sys_days{year{2025}/7/1} + hours{21} + minutes{45},
-        5
+        9
     ));
 
     theatres.push_back(&cinema);
@@ -71,12 +72,14 @@ int main(){
         18
     ));
 
-    cinema.append_session(new Cartoon(
+    drama.append_session(new ComedyPlay(
         "A Midsummer Night’s Dream", 
         sys_days{year{2025}/7/7} + hours{17} + minutes{00},
         15
     ));
 
+
+    theatres.push_back(&drama);
 
 
     while(true){
@@ -116,7 +119,7 @@ int main(){
         std::cout<<"Your age: "<<std::endl;
         std::cin>>order.age;
         for(auto type : session->get_seats_types()){
-            std::cout<<"How many "<<seat_type_to_string(type)<<" do you want ?"<<std::endl;
+            std::cout<<"How many "<<seat_type_to_string(type)<<" tickets do you want ?"<<std::endl;
             std::cin>>order.number_of_tickets[type];
         }
         
@@ -129,9 +132,13 @@ int main(){
         }
 
         session->ticket_order(order);
-        std::cout<<std::endl<<session->order_information(order);
+        std::cout<<std::endl<<session->order_information(order)<<std::endl;
+        std::cout<<"Thank you for using our service!\n"<<
+                    "Would you like to order something else? (0 - No | 1 - Yes)";
         std::cin>>end_choice;
-
+        if(end_choice)
+            continue;
+        break;
     }
 
     return 0;

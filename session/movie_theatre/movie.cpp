@@ -15,7 +15,10 @@ double Movie::calculate_price(const OrderRequest& req) const{
     double price = 0;
     price += req.number_of_tickets.at(SeatType::Regular) * cost * 1.0;
     price += req.number_of_tickets.at(SeatType::VIP) * cost * 1.5;
-
+    if(std::count(req.extras.begin(), req.extras.end(), Extras::Popcorn))
+        price += 3;
+    if(std::count(req.extras.begin(), req.extras.end(), Extras::Cola))
+        price += 1;  
     
     return price;
 }

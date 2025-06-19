@@ -4,8 +4,8 @@ project(TheatreProject VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_BUILD_TYPE Debug)
 
-# Include directories
 include_directories(
     ${PROJECT_SOURCE_DIR}/session
     ${PROJECT_SOURCE_DIR}/session/drama_theatre
@@ -15,7 +15,6 @@ include_directories(
     ${PROJECT_SOURCE_DIR}/order_request
 )
 
-# Gather all .cpp source files
 file(GLOB_RECURSE PROJECT_SOURCES
     main.cpp
     session/*.cpp
@@ -25,10 +24,8 @@ file(GLOB_RECURSE PROJECT_SOURCES
     theatre/*.cpp
 )
 
-# Create the executable
 add_executable(TheatreProject ${PROJECT_SOURCES})
 
-# Optional install rules
 install(TARGETS TheatreProject
     RUNTIME DESTINATION bin
 )

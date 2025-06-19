@@ -9,6 +9,7 @@ Theatre::Theatre(const std::string& name_, const std::string& location_):
 void Theatre::append_session(Session *s){
     sessions.push_back(s);
     s->set_parent(this);
+    s->set_seats_left(seat_counts);
 }
 
 int Theatre::get_seats(const SeatType& x) const{
