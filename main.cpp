@@ -1,20 +1,21 @@
 #include <iostream>
 
-#include "comedy_play.h"
-#include "drama_theatre.h"
-#include "enums.h"
-#include "session.h"
 #include "theatre.h"
-#include "theatre/opera_theatre.h"
-#include "session/opera_theatre/grand_opera.h"
-#include "session/opera_theatre/choir.h"
+#include "session.h"
+#include "enums.h"
+#include "order_request.h"
 
-#include "theatre/movie_theatre.h"
-#include "session/movie_theatre/horror_movie.h"
-#include "session/movie_theatre/action_movie.h"
-#include "session/movie_theatre/cartoon.h"
+#include "opera_theatre.h"
+#include "grand_opera.h"
+#include "choir.h"
 
-#include "order_request/order_request.h"
+#include "movie_theatre.h"
+#include "horror_movie.h"
+#include "action_movie.h"
+#include "cartoon.h"
+
+#include "drama_theatre.h"
+#include "comedy_play.h"
 #include "tragedy_play.h"
 
 

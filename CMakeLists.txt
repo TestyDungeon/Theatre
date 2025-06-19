@@ -29,3 +29,24 @@ add_executable(TheatreProject ${PROJECT_SOURCES})
 install(TARGETS TheatreProject
     RUNTIME DESTINATION bin
 )
+
+add_subdirectory(googletest)
+enable_testing()
+
+add_executable(runTests
+    tests/test_main.cpp
+    tests/test_movies.cpp
+
+    session/movie_theatre/movie.cpp
+    session/movie_theatre/horror_movie.cpp
+    session/session.cpp
+    theatre/theatre.cpp
+)
+
+target_link_libraries(runTests
+    gtest
+    gtest_main
+    pthread
+)
+
+add_test(NAME AllTests COMMAND runTests)

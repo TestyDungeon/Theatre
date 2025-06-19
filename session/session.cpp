@@ -16,6 +16,14 @@ std::string Session::get_title() const{
     return title;
 }
 
+double Session::get_cost() const{
+    return cost;
+}
+
+std::chrono::sys_seconds Session::get_time() const{
+    return time;
+}
+
 void Session::set_parent(Theatre* x){
     parent_theatre = x;
 }

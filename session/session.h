@@ -23,7 +23,12 @@ protected:
 public:
 
     void set_parent(Theatre* x);
+
     std::string get_title() const;
+
+    double get_cost() const;
+
+    std::chrono::sys_seconds get_time() const; 
 
     int get_seats_left(SeatType x) const;
 
