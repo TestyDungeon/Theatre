@@ -2,10 +2,8 @@
 
 #include "enums.h"
 #include "order_request.h"
-#ifndef THEATRE_H
-#define THEATRE_H
+#include <memory>
 
-#endif // THEATRE_H
 
 
 #include <string>
@@ -21,7 +19,7 @@ protected:
     std::string name;
     std::string location;
     
-    std::vector<Session *> sessions;
+    std::vector<std::unique_ptr<Session>> sessions;
     std::unordered_map<SeatType, int> seat_counts;
 public:
     Theatre(const std::string& name_, const std::string& location_);
@@ -38,7 +36,9 @@ public:
 
     int get_number_of_sessions() const;
 
-    Session* get_session(int i) const;
+    const Session* get_session(int i) const;
+
+    Session* get_session(int i);
 
     std::vector<SeatType> get_available_seat_types() const;
 

@@ -7,7 +7,7 @@ Theatre::Theatre(const std::string& name_, const std::string& location_):
 {}
 
 void Theatre::append_session(Session *s){
-    sessions.push_back(s);
+    sessions.push_back(std::unique_ptr<Session>(s));
     s->set_parent(this);
     s->set_seats_left(seat_counts);
 }
@@ -28,8 +28,12 @@ int Theatre::get_number_of_sessions() const{
     return sessions.size();
 }
 
-Session* Theatre::get_session(int i) const{
-    return sessions[i];
+const Session* Theatre::get_session(int i) const{
+    return sessions[i].get();
+}
+
+Session* Theatre::get_session(int i){
+    return sessions[i].get();
 }
 
 const std::string& Theatre::get_name() const{

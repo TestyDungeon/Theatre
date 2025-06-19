@@ -35,13 +35,23 @@ add_subdirectory(googletest)
 enable_testing()
 
 add_executable(runTests
-    tests/test_main.cpp
-    tests/test_movies.cpp
+    tests/test_orders.cpp
 
     session/movie_theatre/movie.cpp
     session/movie_theatre/horror_movie.cpp
+    session/movie_theatre/action_movie.cpp
+    session/movie_theatre/cartoon.cpp
+    session/drama_theatre/play.cpp
+    session/drama_theatre/tragedy_play.cpp
+    session/drama_theatre/comedy_play.cpp
+    session/opera_theatre/opera.cpp
+    session/opera_theatre/choir.cpp
+    session/opera_theatre/grand_opera.cpp
     session/session.cpp
     theatre/theatre.cpp
+    theatre/drama_theatre.cpp
+    theatre/opera_theatre.cpp
+    theatre/movie_theatre.cpp
 )
 
 target_link_libraries(runTests
